@@ -1,0 +1,41 @@
+#!/bin/bash
+#Display the menu
+menu() {
+  echo "Welcome to the address book!"
+  echo "Please select an option:"
+  echo "1) Search for a record"
+  echo "2) Add a new record"
+  echo "3) Display all records"
+  read -p "Enter menu number: " menu_number
+}
+#Search for record
+search() {
+  read -p "Enter search term: " search_term
+  grep "$search_term" addressbook.txt
+  }
+#Add_record
+add_record() {
+  read -p "Enter name: " name
+  read -p "Enter email: " email
+  read -p "Enter phone number: " phone
+  echo "$name $email $phone" >> addressbook.txt
+}
+#Display addresbook
+display_records() {
+ cat addressbook.txt
+}
+#Main
+  main() {
+  menu
+  if [ $menu_number = 1 ]
+  then
+    search
+  elif [ $menu_number = 2 ]
+  then
+    add_record
+  elif [ $menu_number = 3 ]
+  then
+    display_records
+  fi
+}
+main
